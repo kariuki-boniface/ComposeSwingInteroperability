@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.ComposePanel
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import java.awt.BorderLayout
 import java.awt.Dimension
@@ -39,30 +40,27 @@ fun main() = SwingUtilities.invokeLater {
     val button2 = JButton("Swing Button 1")
     button2.setSize(10,10)
     jFrame.contentPane.add(button2, BorderLayout.NORTH)
+    jFrame.contentPane.add(panel, BorderLayout.CENTER)
     jFrame.contentPane.add(JButton("Swing Button 2"), BorderLayout.EAST)
     jFrame.contentPane.add(JButton("Swing Button 3"), BorderLayout.WEST)
 
-    // adding ComposePanel on JFrame
-    jFrame.contentPane.add(panel, BorderLayout.CENTER)
-    panel.setContent {
-        composeElements()
-    }
+    panel.setContent { composeElements() }
 
 }
 @Composable
 fun composeElements() {
-    Spacer(modifier = Modifier.height(40.dp))
+    Spacer(modifier = Modifier.height(50.dp))
     Column (
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(50.dp))
         Row {
 
             Surface(
-                modifier = Modifier.size(130.dp, 130.dp),
                 color = Color(200, 200, 200),
-                shape = RoundedCornerShape(4.dp)
+                modifier = Modifier.size(130.dp, 130.dp),
+                shape = RectangleShape
             ){
                 Column {
                     Box(
@@ -76,7 +74,7 @@ fun composeElements() {
                         modifier = Modifier.height(30.dp).fillMaxWidth(),
                         contentAlignment = Alignment.Center
                     ){
-                        Button(onClick = {}){
+                        Button(onClick = {}, shape = RoundedCornerShape(10.dp)){
                             Text("Button 1")
                         }
                     }

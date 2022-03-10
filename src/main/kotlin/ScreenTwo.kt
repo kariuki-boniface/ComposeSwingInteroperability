@@ -14,34 +14,32 @@ import javax.swing.BoxLayout
 import javax.swing.JButton
 import javax.swing.JPanel
 
-fun main() = singleWindowApplication {
+fun main() = singleWindowApplication(title = "Compose Simple Application") {
+
     Column {
         Box(modifier = Modifier.fillMaxWidth().height(60.dp).padding(top = 20.dp),
-            contentAlignment = Alignment.Center){
-                Button( modifier = Modifier.size(270.dp, 30.dp), onClick = {}){
+            contentAlignment = Alignment.TopCenter){
+                Button( modifier = Modifier.size(200.dp, 40.dp), onClick = {}){
                     Text("Compose Button")
                 }
 
         }
         Box(modifier = Modifier.fillMaxWidth().height(60.dp).padding(top = 20.dp),
              contentAlignment = Alignment.Center ){
-            Button( modifier = Modifier.size(270.dp, 30.dp), onClick = {}){
+            Button( modifier = Modifier.size(200.dp, 40.dp), onClick = {}){
                 Text("Compose Button")
             }
         }
         Box(modifier = Modifier.fillMaxWidth().height(60.dp).padding(20.dp),
             contentAlignment = Alignment.Center){
             SwingPanel(
+                modifier = Modifier.size(200.dp, 40.dp),
                 background = White,
-                modifier = Modifier.size(270.dp, 90.dp),
                 factory = {
                     val button = JButton("Swing Button")
                     button.preferredSize = Dimension(40,40)
-
-                    JPanel().apply {
-                        layout = BoxLayout(this, BoxLayout.X_AXIS)
-                        add(button)
-                    }
+                    val panel = JPanel()
+                    panel.add(button, BoxLayout.X_AXIS)
                 }
             )
         }
